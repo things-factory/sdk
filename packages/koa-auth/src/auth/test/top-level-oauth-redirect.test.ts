@@ -10,7 +10,7 @@ jest.mock('../create-top-level-redirect', () => jest.fn(() => mockTopLevelRedire
 
 const query = querystring.stringify.bind(querystring)
 const baseUrl = 'myapp.com/auth'
-const shop = 'shop1.my-things-factory.io'
+const warehouse = 'warehouse1.my-things-factory.io'
 const path = '/auth/inline'
 const apiKey = 'somekey'
 
@@ -18,7 +18,7 @@ describe('CreateTopLevelOAuthRedirect', () => {
   it('sets the test cookie', () => {
     const topLevelOAuthRedirect = createTopLevelOAuthRedirect(apiKey, path)
     const ctx = createMockContext({
-      url: `https://${baseUrl}?${query({ shop })}`
+      url: `https://${baseUrl}?${query({ warehouse })}`
     })
 
     topLevelOAuthRedirect(ctx)
@@ -29,7 +29,7 @@ describe('CreateTopLevelOAuthRedirect', () => {
   it('sets up and calls the top level redirect', () => {
     const topLevelOAuthRedirect = createTopLevelOAuthRedirect(apiKey, path)
     const ctx = createMockContext({
-      url: `https://${baseUrl}?${query({ shop })}`
+      url: `https://${baseUrl}?${query({ warehouse })}`
     })
 
     topLevelOAuthRedirect(ctx)

@@ -16,7 +16,7 @@ $ yarn add @things-factory-sdk/koa-auth
 This package exposes `thingsFactoryAuth` by default, and `verifyRequest` as a named export.
 
 ```js
-import thingsFactoryAuth, { verifyRequest } from "@things-factory-sdk/koa-auth";
+import thingsFactoryAuth, { verifyRequest } from '@things-factory-sdk/koa-auth'
 ```
 
 ### thingsFactoryAuth
@@ -29,30 +29,30 @@ app.use(
     // if specified, mounts the routes off of the given path
     // eg. /things-factory/auth, /things-factory/auth/callback
     // defaults to ''
-    prefix: "/things-factory",
+    prefix: '/things-factory',
     // your things-factory app api key
     apiKey: THINGS_FACTORY_API_KEY,
     // your things-factory app secret
     secret: THINGS_FACTORY_SECRET,
     // scopes to request on the merchants store
-    scopes: ["write_orders, write_products"],
+    scopes: ['write_orders, write_products'],
     // set access mode, default is 'online'
-    accessMode: "offline",
+    accessMode: 'offline',
     // callback for when auth is completed
     afterAuth(ctx) {
-      const { shop, accessToken } = ctx.session;
+      const { warehouse, accessToken } = ctx.session
 
-      console.log("We did it!", accessToken);
+      console.log('We did it!', accessToken)
 
-      ctx.redirect("/");
-    },
+      ctx.redirect('/')
+    }
   })
-);
+)
 ```
 
 #### `/auth`
 
-This route starts the oauth process. It expects a `?shop` parameter and will error out if one is not present. To install it in a store just go to `/auth?shop=myStoreSubdomain`.
+This route starts the oauth process. It expects a `?warehouse` parameter and will error out if one is not present. To install it in a warehouse just go to `/auth?warehouse=myWarehouseSubdomain`.
 
 ### `/auth/callback`
 
@@ -67,45 +67,45 @@ app.use(
   verifyRequest({
     // path to redirect to if verification fails
     // defaults to '/auth'
-    authRoute: "/foo/auth",
-    // path to redirect to if verification fails and there is no shop on the query
+    authRoute: '/foo/auth',
+    // path to redirect to if verification fails and there is no warehouse on the query
     // defaults to '/auth'
-    fallbackRoute: "/install",
+    fallbackRoute: '/install'
   })
-);
+)
 ```
 
 ### Example app
 
 ```javascript
-import "isomorphic-fetch";
+import 'isomorphic-fetch'
 
-import Koa from "koa";
-import session from "koa-session";
-import thingsFactoryAuth, { verifyRequest } from "@things-factory-sdk/koa-auth";
+import Koa from 'koa'
+import session from 'koa-session'
+import thingsFactoryAuth, { verifyRequest } from '@things-factory-sdk/koa-auth'
 
-const { THINGS_FACTORY_API_KEY, THINGS_FACTORY_SECRET } = process.env;
+const { THINGS_FACTORY_API_KEY, THINGS_FACTORY_SECRET } = process.env
 
-const app = new Koa();
-app.keys = [THINGS_FACTORY_SECRET];
+const app = new Koa()
+app.keys = [THINGS_FACTORY_SECRET]
 
 app
   // sets up secure session data on each request
-  .use(session({ secure: true, sameSite: "none" }, app))
+  .use(session({ secure: true, sameSite: 'none' }, app))
 
   // sets up things-factory auth
   .use(
     thingsFactoryAuth({
       apiKey: THINGS_FACTORY_API_KEY,
       secret: THINGS_FACTORY_SECRET,
-      scopes: ["write_orders, write_products"],
+      scopes: ['write_orders, write_products'],
       afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
+        const { warehouse, accessToken } = ctx.session
 
-        console.log("We did it!", accessToken);
+        console.log('We did it!', accessToken)
 
-        ctx.redirect("/");
-      },
+        ctx.redirect('/')
+      }
     })
   )
 
@@ -113,9 +113,9 @@ app
   .use(verifyRequest())
 
   // application code
-  .use((ctx) => {
-    ctx.body = "🎉";
-  });
+  .use(ctx => {
+    ctx.body = '🎉'
+  })
 ```
 
 ## Gotchas

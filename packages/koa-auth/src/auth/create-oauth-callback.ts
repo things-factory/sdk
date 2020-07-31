@@ -10,15 +10,15 @@ import validateHmac from './validate-hmac'
 export default function createOAuthCallback(config: AuthConfig) {
   return async function oAuthCallback(ctx: Context) {
     const { query, cookies } = ctx
-    const { code, hmac, shop, state: nonce } = query
+    const { code, hmac, warehouse, state: nonce } = query
     const { apiKey, secret, afterAuth } = config
 
     if (nonce == null || cookies.get('thingsFactoryNonce') !== nonce) {
       ctx.throw(403, Error.NonceMatchFailed)
     }
 
-    if (shop == null) {
-      ctx.throw(400, Error.ShopParamMissing)
+    if (warehouse == null) {
+      ctx.throw(400, Error.WarehouseParamMissing)
       return
     }
 
@@ -35,7 +35,7 @@ export default function createOAuthCallback(config: AuthConfig) {
     })
     /* eslint-enable @typescript-eslint/camelcase */
 
-    const accessTokenResponse = await fetch(`https://${shop}/admin/oauth/access_token`, {
+    const accessTokenResponse = await fetch(`https://${warehouse}/admin/oauth/access_token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -53,12 +53,12 @@ export default function createOAuthCallback(config: AuthConfig) {
     const { access_token: accessToken } = accessTokenData
 
     if (ctx.session) {
-      ctx.session.shop = shop
+      ctx.session.warehouse = warehouse
       ctx.session.accessToken = accessToken
     }
 
     ctx.state.thingsFactory = {
-      shop,
+      warehouse,
       accessToken
     }
 

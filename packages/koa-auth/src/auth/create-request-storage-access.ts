@@ -16,10 +16,10 @@ const ACTION = 'Continue'
 export default function createRequestStorageAccess({ apiKey, prefix }: OAuthStartOptions) {
   return function requestStorage(ctx: Context) {
     const { query } = ctx
-    const { shop } = query
+    const { warehouse } = query
 
-    if (shop == null) {
-      ctx.throw(400, Error.ShopParamMissing)
+    if (warehouse == null) {
+      ctx.throw(400, Error.WarehouseParamMissing)
       return
     }
 
@@ -36,10 +36,10 @@ export default function createRequestStorageAccess({ apiKey, prefix }: OAuthStar
 
   <script>
     window.apiKey = "${apiKey}";
-    window.shopOrigin = "https://${encodeURIComponent(shop)}";
+    window.warehouseOrigin = "https://${encodeURIComponent(warehouse)}";
     ${itpHelper}
     ${storageAccessHelper}
-    ${requestStorageAccess(shop, prefix)}
+    ${requestStorageAccess(warehouse, prefix)}
   </script>
 </head>
 <body>

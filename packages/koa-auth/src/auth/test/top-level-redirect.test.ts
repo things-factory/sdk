@@ -8,23 +8,23 @@ import redirectionPage from '../redirection-page'
 const query = querystring.stringify.bind(querystring)
 const baseUrl = 'myapp.com/auth'
 const path = '/path'
-const shop = 'shop1.my-things-factory.io'
-const shopOrigin = 'shop1.my-things-factory.io'
+const warehouse = 'warehouse1.my-things-factory.io'
+const warehouseOrigin = 'warehouse1.my-things-factory.io'
 const apiKey = 'fakekey'
 
 describe('TopLevelRedirect', () => {
-  it('redirects to the provided path with shop parameter', () => {
+  it('redirects to the provided path with warehouse parameter', () => {
     const topLevelRedirect = createTopLevelRedirect(apiKey, path)
     const ctx = createMockContext({
-      url: `https://${baseUrl}?${query({ shop })}`
+      url: `https://${baseUrl}?${query({ warehouse })}`
     })
 
     topLevelRedirect(ctx)
 
     expect(ctx.body).toBe(
       redirectionPage({
-        redirectTo: `https://myapp.com/path?${query({ shop })}`,
-        origin: shopOrigin,
+        redirectTo: `https://myapp.com/path?${query({ warehouse })}`,
+        origin: warehouseOrigin,
         apiKey
       })
     )
