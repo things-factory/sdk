@@ -1,0 +1,8 @@
+org_line: ThingsFactory Core
+owners:
+  - heartyoh
+audience: partner
+classification: library
+ci_url: https://travis-ci.org/things-factory/sdk
+slack_channels:
+  - web-foundation-tech
