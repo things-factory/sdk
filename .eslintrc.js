@@ -4,14 +4,10 @@ module.exports = {
     'plugin:@shopify/typescript-type-checking',
     'plugin:@shopify/react',
     'plugin:@shopify/jest',
-    'plugin:@shopify/prettier',
+    'plugin:@shopify/prettier'
   ],
   parserOptions: {
-    project: [
-      'packages/tsconfig.json',
-      'packages/tsconfig_base.json',
-      'test/tsconfig.eslint.json',
-    ],
+    project: ['packages/tsconfig.json', 'packages/tsconfig_base.json', 'test/tsconfig.eslint.json']
   },
   rules: {
     'jest/valid-expect-in-promise': 'off',
@@ -23,6 +19,7 @@ module.exports = {
     'callback-return': 'off',
     'func-style': 'off',
     'react/display-name': 'off',
+    'babel/object-curly-spacing': 'off',
     '@shopify/restrict-full-import': ['error', 'lodash'],
     '@shopify/jsx-no-hardcoded-content': 'off',
     // reports false positives with React's useRef hook
@@ -36,22 +33,18 @@ module.exports = {
     '@typescript-eslint/await-thenable': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     'import/no-extraneous-dependencies': 'error',
+    'import/order': 'off'
   },
   overrides: [
     {
-      files: [
-        '**/test/**/*.ts',
-        '**/test/**/*.tsx',
-        '**/tests/**/*.ts',
-        '**/tests/**/*.tsx',
-      ],
+      files: ['**/test/**/*.ts', '**/test/**/*.tsx', '**/tests/**/*.ts', '**/tests/**/*.tsx'],
       rules: {
         // We disable `import/no-extraneous-dependencies` for test files because it
         // would force releases of `@shopify/react-testing` (and similar devDependencies)
         // to cause unnecessary package bumps in every package that consumes them.
         // Test files with extraneous dependencies won't cause runtime errors in production.
-        'import/no-extraneous-dependencies': 'off',
-      },
-    },
-  ],
-};
+        'import/no-extraneous-dependencies': 'off'
+      }
+    }
+  ]
+}
