@@ -30,6 +30,7 @@
     "url": "https://github.com/things-factory-sdk/sdk/issues"
   },
   "homepage": "https://github.com/things-factory-sdk/sdk#readme",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],

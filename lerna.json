@@ -1,11 +1,17 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",
   "command": {
     "publish": {
-      "ignoreChanges": ["**/*.md", "**/tests/**", "**/test/**"]
+      "ignoreChanges": [
+        "**/*.md",
+        "**/tests/**",
+        "**/test/**"
+      ]
     }
   }
 }
