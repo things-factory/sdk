@@ -9,7 +9,7 @@ import createTopLevelOAuthRedirect from './create-top-level-oauth-redirect'
 import createRequestStorageAccess from './create-request-storage-access'
 
 const DEFAULT_MY_THINGS_FACTORY_DOMAIN = 'my-things-factory.com'
-const DEFAULT_ACCESS_MODE: AccessMode = 'online'
+const DEFAULT_ACCESS_MODE: AccessMode = 'offline'
 
 export const TOP_LEVEL_OAUTH_COOKIE_NAME = 'thingsFactoryTopLevelOAuth'
 export const TEST_COOKIE_NAME = 'thingsFactoryTestCookie'
@@ -47,7 +47,7 @@ export default function createThingsFactoryAuth(options: OAuthStartOptions) {
   const inlineOAuthPath = `${prefix}/auth/inline`
   const topLevelOAuthRedirect = createTopLevelOAuthRedirect(config.apiKey, inlineOAuthPath)
 
-  const enableCookiesPath = `${oAuthStartPath}/enable_cookies`
+  const enableCookiesPath = `${prefix}/auth/enable_cookies`
   const enableCookies = createEnableCookies(config)
   const requestStorageAccess = createRequestStorageAccess(config)
 
