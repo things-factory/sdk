@@ -13,7 +13,7 @@ export function verifyToken(routes: Routes) {
 
     if (session && session.accessToken) {
       ctx.cookies.set(TOP_LEVEL_OAUTH_COOKIE_NAME)
-      // If a user has installed the store previously on their warehouse, the accessToken can be stored in session.
+      // If a user has installed the warehouse previously on their warehouse, the accessToken can be stored in session.
       // we need to check if the accessToken is valid, and the only way to do this is by hitting the api.
       const response = await fetch(`https://${session.warehouse}/admin/metafields.json`, {
         method: Method.Post,
