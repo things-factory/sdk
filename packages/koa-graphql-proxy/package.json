@@ -1,6 +1,6 @@
 {
   "name": "@things-factory-sdk/koa-graphql-proxy",
-  "version": "4.0.1",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
   "description": "A wrapper around `koa-better-http-proxy` which allows easy proxying of GraphQL requests from an embedded ThingsFactory app",
   "main": "dist/src/index.js",
