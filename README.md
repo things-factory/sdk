@@ -13,7 +13,7 @@ These libraries compose together to help you create performant modern JS apps th
 
 ## Usage
 
-The sdk repo is managed as a monorepo that is composed of 1 npm packages.
+The sdk repo is managed as a monorepo that is composed of 3 npm packages.
 Each package has its own `README.md` and documentation describing usage.
 
 ### Package Index
@@ -23,6 +23,8 @@ Each package has its own `README.md` and documentation describing usage.
 
 
 | [koa-auth](packages/koa-auth) | <a href="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-auth"><img src="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-auth.svg" width="200px" /></a> | Middleware to authenticate a Koa application with ThingsFactory |
+| [koa-graphql-proxy](packages/koa-graphql-proxy) | <a href="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-graphql-proxy"><img src="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-graphql-proxy.svg" width="200px" /></a> | A wrapper around `koa-better-http-proxy` which allows easy proxying of GraphQL requests from an embedded ThingsFactory app |
+| [koa-webhooks](packages/koa-webhooks) | <a href="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-webhooks"><img src="https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-webhooks.svg" width="200px" /></a> | Receive webhooks from ThingsFactory with ease |
 
 ## Want to contribute?
 
