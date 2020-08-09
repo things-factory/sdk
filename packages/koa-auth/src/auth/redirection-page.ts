@@ -1,6 +1,6 @@
 export default function redirectionScript({ origin, redirectTo, apiKey }) {
   return `
-    <script src="https://unpkg.com/@shopify/app-bridge@^1"></script> <script type="text/javascript">
+    <script src="https://unpkg.com/@things-factory/app-bridge@^1"></script> <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
         if (window.top === window.self) {
           // If the current window is the 'parent', change the URL by setting location.href

@@ -1,0 +1,38 @@
+{
+  "name": "@things-factory-sdk/koa-graphql-proxy",
+  "version": "4.0.1",
+  "license": "MIT",
+  "description": "A wrapper around `koa-better-http-proxy` which allows easy proxying of GraphQL requests from an embedded ThingsFactory app",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc --p tsconfig.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@things-factory-sdk:registry": "https://registry.npmjs.org"
+  },
+  "author": "heartyoh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/things-factory/sdk.git",
+    "directory": "packages/koa-graphql-proxy"
+  },
+  "bugs": {
+    "url": "https://github.com/things-factory/sdk/issues"
+  },
+  "homepage": "https://github.com/things-factory/sdk/blob/master/packages/koa-graphql-proxy/README.md",
+  "dependencies": {
+    "@types/koa": "^2.0.0",
+    "koa-better-http-proxy": "^0.2.4",
+    "tslib": "^1.9.3"
+  },
+  "peerDependencies": {
+    "koa": ">=2.0.0"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/*",
+    "!tsconfig.tsbuildinfo"
+  ]
+}
