@@ -143,7 +143,7 @@ app.use(
         topic: 'PRODUCTS_CREATE',
         accessToken,
         warehouse,
-        ApiVersion.Unstable
+        apiVersion: ApiVersion.Unstable
       });
 
       await registerWebhook({
@@ -151,7 +151,7 @@ app.use(
         topic: 'ORDERS_CREATE',
         accessToken,
         warehouse,
-        ApiVersion.Unstable
+        apiVersion: ApiVersion.Unstable
       });
 
       ctx.redirect('/');
