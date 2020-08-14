@@ -17,7 +17,7 @@ The module exports a proxy middleware as its default export. It expects that you
 
 ### Basic
 
-Attaching the middleware will proxy any requests sent to `/graphql` on your app to the current logged-in warehouse found in session.
+Attaching the middleware will proxy any requests sent to `/graphql` on your app to the current logged-in site found in session.
 
 ```javascript
 // server/index.js
@@ -39,7 +39,7 @@ app.use(
 app.use(proxy({ version: ApiVersion.Unstable }))
 ```
 
-This allows client-side scripts to query a logged-in merchant's warehouse without needing to know the user's access token.
+This allows client-side scripts to query a logged-in merchant's site without needing to know the user's access token.
 
 ```javascript
 fetch('/graphql', { credentials: 'include', body: mySerializedGraphQL })

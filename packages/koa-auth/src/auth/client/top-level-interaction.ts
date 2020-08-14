@@ -1,8 +1,8 @@
-const topLevelInteraction = (warehouse: string, prefix = '') => {
+const topLevelInteraction = (site: string, prefix = '') => {
   return `(function() {
       function setUpTopLevelInteraction() {
         var TopLevelInteraction = new ITPHelper({
-          redirectUrl: "${prefix}/auth?warehouse=${encodeURIComponent(warehouse)}",
+          redirectUrl: "${prefix}/auth?site=${encodeURIComponent(site)}",
         });
 
         TopLevelInteraction.execute();

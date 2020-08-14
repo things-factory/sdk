@@ -12,12 +12,12 @@ export default function createOAuthStart(options: OAuthStartOptions, callbackPat
   return function oAuthStart(ctx: Context) {
     const { myThingsFactoryDomain } = options
     const { query } = ctx
-    const { warehouse } = query
+    const { site } = query
 
-    const warehouseRegex = new RegExp(`^[a-z0-9][a-z0-9\\-]*[a-z0-9]\\.${myThingsFactoryDomain}$`, 'i')
+    const siteRegex = new RegExp(`^[a-z0-9][a-z0-9\\-]*[a-z0-9]\\.${myThingsFactoryDomain}$`, 'i')
 
-    if (warehouse == null || !warehouseRegex.test(warehouse)) {
-      ctx.throw(400, Error.WarehouseParamMissing)
+    if (site == null || !siteRegex.test(site)) {
+      ctx.throw(400, Error.SiteParamMissing)
       return
     }
 
@@ -25,6 +25,6 @@ export default function createOAuthStart(options: OAuthStartOptions, callbackPat
 
     const formattedQueryString = oAuthQueryString(ctx, options, callbackPath)
 
-    ctx.redirect(`https://${warehouse}/admin/oauth/authorize?${formattedQueryString}`)
+    ctx.redirect(`https://${site}/admin/oauth/authorize?${formattedQueryString}`)
   }
 }

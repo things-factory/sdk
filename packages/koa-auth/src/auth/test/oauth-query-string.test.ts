@@ -14,7 +14,7 @@ const query = querystring.stringify.bind(querystring)
 const fakeNonce = 'fakenonce'
 const baseUrl = 'myapp.com/auth'
 const callbackPath = '/auth/callback'
-const warehouse = 'warehouse1.my-things-factory.io'
+const site = 'site1.my-things-factory.io'
 
 const baseConfig = {
   apiKey: 'myapikey',
@@ -40,7 +40,7 @@ describe('oAuthQueryString', () => {
 
   it('returns a valid query string', () => {
     const ctx = createMockContext({
-      url: `https://${baseUrl}?${query({ warehouse })}`
+      url: `https://${baseUrl}?${query({ site })}`
     })
 
     const generatedQueryString = oAuthQueryString(ctx, baseConfig, callbackPath)
@@ -50,7 +50,7 @@ describe('oAuthQueryString', () => {
 
   it('sets nonce cookie', () => {
     const ctx = createMockContext({
-      url: `https://${baseUrl}?${query({ warehouse })}`
+      url: `https://${baseUrl}?${query({ site })}`
     })
 
     oAuthQueryString(ctx, baseConfig, callbackPath)
@@ -60,7 +60,7 @@ describe('oAuthQueryString', () => {
 
   it('query string includes per-user grant for accessMode: online', () => {
     const ctx = createMockContext({
-      url: 'https://myapp.com/auth?warehouse=warehouse1.my-things-factory.io'
+      url: 'https://myapp.com/auth?site=site1.my-things-factory.io'
     })
 
     const generatedQueryString = oAuthQueryString(ctx, { ...baseConfig, accessMode: 'online' }, callbackPath)

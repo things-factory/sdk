@@ -18,18 +18,18 @@ interface DefaultProxyOptions {
   version: ApiVersion
 }
 
-interface PrivateWarehouseOption extends DefaultProxyOptions {
+interface PrivateSiteOption extends DefaultProxyOptions {
   password: string
-  warehouse: string
+  site: string
 }
 
-type ProxyOptions = PrivateWarehouseOption | DefaultProxyOptions
+type ProxyOptions = PrivateSiteOption | DefaultProxyOptions
 
 export default function thingsFactoryGraphQLProxy(proxyOptions: ProxyOptions) {
   return async function thingsFactoryGraphQLProxyMiddleware(ctx: Context, next: () => Promise<any>) {
     const { session = {} } = ctx
 
-    const warehouse = 'warehouse' in proxyOptions ? proxyOptions.warehouse : session.warehouse
+    const site = 'site' in proxyOptions ? proxyOptions.site : session.site
     const accessToken = 'password' in proxyOptions ? proxyOptions.password : session.accessToken
     const version = proxyOptions.version
 
@@ -38,12 +38,12 @@ export default function thingsFactoryGraphQLProxy(proxyOptions: ProxyOptions) {
       return
     }
 
-    if (accessToken == null || warehouse == null) {
+    if (accessToken == null || site == null) {
       ctx.throw(403, 'Unauthorized')
       return
     }
 
-    await proxy(warehouse, {
+    await proxy(site, {
       https: true,
       parseReqBody: false,
       // Setting request header here, not response. That's why we don't use ctx.set()

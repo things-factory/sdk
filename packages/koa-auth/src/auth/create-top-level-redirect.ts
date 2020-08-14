@@ -7,13 +7,13 @@ import redirectionPage from './redirection-page'
 export default function createTopLevelRedirect(apiKey: string, path: string) {
   return function topLevelRedirect(ctx: Context) {
     const { host, query } = ctx
-    const { warehouse } = query
+    const { site } = query
 
-    const params = { warehouse }
+    const params = { site }
     const queryString = querystring.stringify(params)
 
     ctx.body = redirectionPage({
-      origin: warehouse,
+      origin: site,
       redirectTo: `https://${host}${path}?${queryString}`,
       apiKey
     })

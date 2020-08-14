@@ -37,7 +37,7 @@ describe('koa-graphql-proxy', () => {
       url: PROXY_BASE_PATH,
       method: 'POST',
       throw: jest.fn(),
-      session: { warehouse: 'warehouse1.myoperato.com' }
+      session: { site: 'site1.myoperato.com' }
     })
 
     await koaThingsFactoryGraphQLProxyMiddleware(ctx, jest.fn())
@@ -45,7 +45,7 @@ describe('koa-graphql-proxy', () => {
     expect(ctx.throw).toHaveBeenCalledWith(403, 'Unauthorized')
   })
 
-  it('throws when no warehouse is on session', async () => {
+  it('throws when no site is on session', async () => {
     const koaThingsFactoryGraphQLProxyMiddleware = koaThingsFactoryGraphQLProxy({
       version: ApiVersion.Unstable
     })
@@ -69,7 +69,7 @@ describe('koa-graphql-proxy', () => {
       url: '/graphql',
       method: 'GET',
       throw: jest.fn(),
-      session: { accessToken: 'sdfasdf', warehouse: 'foobarbaz' }
+      session: { accessToken: 'sdfasdf', site: 'foobarbaz' }
     })
     const nextSpy = jest.fn()
 
@@ -86,7 +86,7 @@ describe('koa-graphql-proxy', () => {
     const ctx = createMockContext({
       url: '/not/graphql',
       throw: jest.fn(),
-      session: { accessToken: 'sdfasdf', warehouse: 'foobarbaz' }
+      session: { accessToken: 'sdfasdf', site: 'foobarbaz' }
     })
     const nextSpy = jest.fn()
 
@@ -120,7 +120,7 @@ describe('koa-graphql-proxy', () => {
       url: PROXY_BASE_PATH,
       method: 'POST',
       throw: jest.fn(),
-      session: { accessToken: 'sdfasdf', warehouse: 'foobarbaz' }
+      session: { accessToken: 'sdfasdf', site: 'foobarbaz' }
     })
     const nextSpy = jest.fn()
 
@@ -135,19 +135,19 @@ describe('koa-graphql-proxy', () => {
       version: ApiVersion.Unstable
     })
     const accessToken = 'asdfasdf'
-    const warehouse = 'i-sell-things.myoperato.com'
+    const site = 'i-sell-things.myoperato.com'
 
     const ctx = createMockContext({
       url: PROXY_BASE_PATH,
       method: 'POST',
       throw: jest.fn(),
-      session: { accessToken, warehouse }
+      session: { accessToken, site }
     })
 
     await koaThingsFactoryGraphQLProxyMiddleware(ctx, jest.fn())
 
     const [host, config] = proxyFactory.mock.calls[0]
-    expect(host).toBe(warehouse)
+    expect(host).toBe(site)
 
     expect(config).toMatchObject({
       headers: {
@@ -161,11 +161,11 @@ describe('koa-graphql-proxy', () => {
 
   it('configures a custom koa-better-http-proxy with private app credentials from the options', async () => {
     const password = 'sdfghsdghsh'
-    const warehouse = 'i-sell-things.myoperato.com'
+    const site = 'i-sell-things.myoperato.com'
     const koaThingsFactoryGraphQLProxyMiddleware = koaThingsFactoryGraphQLProxy({
       version: ApiVersion.Unstable,
       password,
-      warehouse
+      site
     })
 
     const ctx = createMockContext({
@@ -177,7 +177,7 @@ describe('koa-graphql-proxy', () => {
     await koaThingsFactoryGraphQLProxyMiddleware(ctx, jest.fn())
 
     const [host, config] = proxyFactory.mock.calls[0]
-    expect(host).toBe(warehouse)
+    expect(host).toBe(site)
 
     expect(config).toMatchObject({
       headers: {
@@ -189,18 +189,18 @@ describe('koa-graphql-proxy', () => {
     })
   })
 
-  it('passes a proxyReqPathResolver that returns full warehouse url with the API version', async () => {
+  it('passes a proxyReqPathResolver that returns full site url with the API version', async () => {
     const version = ApiVersion.Unstable
     const koaThingsFactoryGraphQLProxyMiddleware = koaThingsFactoryGraphQLProxy({
       version
     })
-    const warehouse = 'some-warehouse.myoperato.com'
+    const site = 'some-site.myoperato.com'
 
     const ctx = createMockContext({
       url: PROXY_BASE_PATH,
       method: 'POST',
       throw: jest.fn(),
-      session: { accessToken: 'sdfasdf', warehouse }
+      session: { accessToken: 'sdfasdf', site }
     })
 
     await koaThingsFactoryGraphQLProxyMiddleware(ctx, jest.fn())
@@ -213,13 +213,13 @@ describe('koa-graphql-proxy', () => {
     const koaThingsFactoryGraphQLProxyMiddleware = koaThingsFactoryGraphQLProxy({
       version: ApiVersion.Unstable
     })
-    const warehouse = 'some-warehouse.myoperato.com'
+    const site = 'some-site.myoperato.com'
 
     const ctx = createMockContext({
       url: PROXY_BASE_PATH,
       method: 'POST',
       throw: jest.fn(),
-      session: { accessToken: 'sdfasdf', warehouse }
+      session: { accessToken: 'sdfasdf', site }
     })
     const nextSpy = jest.fn()
 

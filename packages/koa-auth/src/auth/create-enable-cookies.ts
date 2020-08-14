@@ -16,10 +16,10 @@ const ACTION = 'Enable cookies'
 export default function createEnableCookies({ apiKey, prefix }: OAuthStartOptions) {
   return function enableCookies(ctx: Context) {
     const { query } = ctx
-    const { warehouse } = query
+    const { site } = query
 
-    if (warehouse == null) {
-      ctx.throw(400, Error.WarehouseParamMissing)
+    if (site == null) {
+      ctx.throw(400, Error.SiteParamMissing)
       return
     }
 
@@ -36,10 +36,10 @@ export default function createEnableCookies({ apiKey, prefix }: OAuthStartOption
 
   <script>
     window.apiKey = "${apiKey}";
-    window.warehouseOrigin = "https://${encodeURIComponent(warehouse)}";
+    window.siteOrigin = "https://${encodeURIComponent(site)}";
 
     ${itpHelper}
-    ${topLevelInteraction(warehouse, prefix)}
+    ${topLevelInteraction(site, prefix)}
   </script>
 </head>
 <body>

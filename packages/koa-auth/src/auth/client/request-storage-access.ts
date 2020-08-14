@@ -1,11 +1,11 @@
-const requestStorageAccess = (warehouse: string, prefix = '/') => {
+const requestStorageAccess = (site: string, prefix = '/') => {
   return `(function() {
       function redirect() {
         var targetInfo = {
-          mythingsfactoryUrl: "https://${encodeURIComponent(warehouse)}",
-          hasStorageAccessUrl: "${prefix}auth/inline?warehouse=${encodeURIComponent(warehouse)}",
-          doesNotHaveStorageAccessUrl: "${prefix}auth/enable_cookies?warehouse=${encodeURIComponent(warehouse)}",
-          appTargetUrl: "${prefix}?warehouse=${encodeURIComponent(warehouse)}"
+          mythingsfactoryUrl: "https://${encodeURIComponent(site)}",
+          hasStorageAccessUrl: "${prefix}auth/inline?site=${encodeURIComponent(site)}",
+          doesNotHaveStorageAccessUrl: "${prefix}auth/enable_cookies?site=${encodeURIComponent(site)}",
+          appTargetUrl: "${prefix}?site=${encodeURIComponent(site)}"
         }
 
         if (window.top == window.self) {

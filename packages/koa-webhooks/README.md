@@ -21,7 +21,7 @@ function registerWebhook(options: {
   topic: Topic
   format: string
   accessToken: string
-  warehouse: string
+  site: string
   apiVersion: ApiVersion
 }): { success: boolean; result: any }
 ```
@@ -68,7 +68,7 @@ app.use(
     secret: THINGS_FACTORY_SECRET,
     scopes: ['write_orders, write_products'],
     async afterAuth(ctx) {
-      const {warehouse, accessToken} = ctx.session;
+      const {site, accessToken} = ctx.session;
 
       // register a webhook for product creation
       const registration = await registerWebhook({
@@ -76,7 +76,7 @@ app.use(
         address: 'www.mycool-app.com/webhooks/products/create',
         topic: 'PRODUCTS_CREATE',
         accessToken,
-        warehouse,
+        site,
         ApiVersion.Unstable
       });
 
@@ -136,13 +136,13 @@ app.use(
     secret: THINGS_FACTORY_SECRET,
     scopes: ['write_orders, write_products'],
     async afterAuth(ctx) {
-      const {warehouse, accessToken} = ctx.session;
+      const {site, accessToken} = ctx.session;
 
       await registerWebhook({
         address: 'www.mycool-app.com/webhooks/products/create',
         topic: 'PRODUCTS_CREATE',
         accessToken,
-        warehouse,
+        site,
         apiVersion: ApiVersion.Unstable
       });
 
@@ -150,7 +150,7 @@ app.use(
         address: 'www.mycool-app.com/webhooks/orders/create',
         topic: 'ORDERS_CREATE',
         accessToken,
-        warehouse,
+        site,
         apiVersion: ApiVersion.Unstable
       });
 

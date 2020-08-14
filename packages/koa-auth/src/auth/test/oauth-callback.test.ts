@@ -19,7 +19,7 @@ const nonce = 'totallyrealnonce'
 
 const queryData = {
   state: nonce,
-  warehouse: 'warehouse1.my-things-factory.io',
+  site: 'site1.my-things-factory.io',
   hmac: 'abc',
   code: 'def'
 }
@@ -40,7 +40,7 @@ describe('OAuthCallback', () => {
     fetchMock.restore()
   })
 
-  it('throws a 400 if the warehouse query parameter is not present', () => {
+  it('throws a 400 if the site query parameter is not present', () => {
     fetchMock.mock('*', basicResponse)
 
     const oAuthCallback = createOAuthCallback(baseConfig)
@@ -51,7 +51,7 @@ describe('OAuthCallback', () => {
 
     oAuthCallback(ctx)
 
-    expect(ctx.throw).toHaveBeenCalledWith(400, Error.WarehouseParamMissing)
+    expect(ctx.throw).toHaveBeenCalledWith(400, Error.SiteParamMissing)
   })
 
   it('throws a 400 if the hmac is invalid', async () => {
@@ -122,7 +122,7 @@ describe('OAuthCallback', () => {
     expect(ctx.throw).toHaveBeenCalledWith(403, Error.NonceMatchFailed)
   })
 
-  it('does not throw a 400 when hmac is valid and warehouse parameter is supplied', async () => {
+  it('does not throw a 400 when hmac is valid and site parameter is supplied', async () => {
     fetchMock.mock('*', basicResponse)
 
     const oAuthCallback = createOAuthCallback(baseConfig)
@@ -133,7 +133,7 @@ describe('OAuthCallback', () => {
 
     await oAuthCallback(ctx)
 
-    expect(ctx.throw).not.toHaveBeenCalledWith(400, Error.WarehouseParamMissing)
+    expect(ctx.throw).not.toHaveBeenCalledWith(400, Error.SiteParamMissing)
     expect(ctx.throw).not.toHaveBeenCalledWith(400, Error.InvalidHmac)
   })
 
@@ -153,7 +153,7 @@ describe('OAuthCallback', () => {
     const { code } = queryData
 
     expect(fetchMock.lastCall()).toStrictEqual([
-      'https://warehouse1.my-things-factory.io/admin/oauth/access_token',
+      'https://site1.my-things-factory.io/admin/oauth/access_token',
       {
         body: querystring.stringify({
           code,
@@ -186,7 +186,7 @@ describe('OAuthCallback', () => {
     expect(ctx.throw).toHaveBeenCalledWith(401, Error.AccessTokenFetchFailure)
   })
 
-  it('includes the warehouse and accessToken on session if the token request succeeds and session exists', async () => {
+  it('includes the site and accessToken on session if the token request succeeds and session exists', async () => {
     const accessToken = 'abc'
 
     // eslint-disable-next-line @typescript-eslint/camelcase
@@ -202,12 +202,12 @@ describe('OAuthCallback', () => {
     await oAuthCallback(ctx)
 
     expect(ctx.session).toMatchObject({
-      warehouse: queryData.warehouse,
+      site: queryData.site,
       accessToken
     })
   })
 
-  it('includes the warehouse and accesstoken on state if the token request succeeds', async () => {
+  it('includes the site and accesstoken on state if the token request succeeds', async () => {
     const accessToken = 'abc'
 
     // eslint-disable-next-line @typescript-eslint/camelcase
@@ -223,7 +223,7 @@ describe('OAuthCallback', () => {
     await oAuthCallback(ctx)
 
     expect(ctx.state.thingsFactory).toMatchObject({
-      warehouse: queryData.warehouse,
+      site: queryData.site,
       accessToken
     })
   })

@@ -5,11 +5,11 @@ import { NextFunction } from '../types'
 import { Routes } from './types'
 import { clearSession, redirectToAuth } from './utilities'
 
-export function loginAgainIfDifferentWarehouse(routes: Routes) {
-  return async function loginAgainIfDifferentWarehouseMiddleware(ctx: Context, next: NextFunction) {
+export function loginAgainIfDifferentSite(routes: Routes) {
+  return async function loginAgainIfDifferentSiteMiddleware(ctx: Context, next: NextFunction) {
     const { query, session } = ctx
 
-    if (session && query.warehouse && session.warehouse !== query.warehouse) {
+    if (session && query.site && session.site !== query.site) {
       clearSession(ctx)
       redirectToAuth(routes, ctx)
       return

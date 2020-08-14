@@ -40,7 +40,7 @@ app.use(
     accessMode: 'offline',
     // callback for when auth is completed
     afterAuth(ctx) {
-      const { warehouse, accessToken } = ctx.session
+      const { site, accessToken } = ctx.session
 
       console.log('We did it!', accessToken)
 
@@ -52,7 +52,7 @@ app.use(
 
 #### `/auth`
 
-This route starts the oauth process. It expects a `?warehouse` parameter and will error out if one is not present. To install it in a warehouse just go to `/auth?warehouse=myWarehouseSubdomain`.
+This route starts the oauth process. It expects a `?site` parameter and will error out if one is not present. To install it in a site just go to `/auth?site=mySiteSubdomain`.
 
 ### `/auth/callback`
 
@@ -68,7 +68,7 @@ app.use(
     // path to redirect to if verification fails
     // defaults to '/auth'
     authRoute: '/foo/auth',
-    // path to redirect to if verification fails and there is no warehouse on the query
+    // path to redirect to if verification fails and there is no site on the query
     // defaults to '/auth'
     fallbackRoute: '/install'
   })
@@ -100,7 +100,7 @@ app
       secret: THINGS_FACTORY_SECRET,
       scopes: ['write_orders, write_products'],
       afterAuth(ctx) {
-        const { warehouse, accessToken } = ctx.session
+        const { site, accessToken } = ctx.session
 
         console.log('We did it!', accessToken)
 

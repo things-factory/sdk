@@ -15,13 +15,13 @@ export enum ApiVersion {
 export interface Options {
   topic: Topic
   address: string
-  warehouse: string
+  site: string
   accessToken: string
   apiVersion: ApiVersion
 }
 
-export async function registerWebhook({ address, topic, accessToken, warehouse, apiVersion }: Options) {
-  const response = await fetch(`https://${warehouse}/admin/api/${apiVersion}/graphql.json`, {
+export async function registerWebhook({ address, topic, accessToken, site, apiVersion }: Options) {
+  const response = await fetch(`https://${site}/admin/api/${apiVersion}/graphql.json`, {
     method: Method.Post,
     body: buildQuery(topic, address),
     headers: {

@@ -191,7 +191,7 @@ describe('receiveWebhook', () => {
 function headers({
   hmac = 'fake',
   topic = 'products',
-  domain = 'warehouse1.myoperato.io'
+  domain = 'site1.myoperato.io'
 }: { hmac?: string; topic?: string; domain?: string } = {}) {
   return {
     [WebhookHeader.Hmac]: hmac,

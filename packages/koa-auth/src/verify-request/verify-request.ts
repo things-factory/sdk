@@ -1,6 +1,6 @@
 import compose from 'koa-compose'
 
-import { loginAgainIfDifferentWarehouse } from './login-again-if-different-warehouse'
+import { loginAgainIfDifferentSite } from './login-again-if-different-site'
 import { verifyToken } from './verify-token'
 import { Options, Routes } from './types'
 
@@ -11,5 +11,5 @@ export default function verifyRequest(givenOptions: Options = {}) {
     ...givenOptions
   }
 
-  return compose([loginAgainIfDifferentWarehouse(routes), verifyToken(routes)])
+  return compose([loginAgainIfDifferentSite(routes), verifyToken(routes)])
 }

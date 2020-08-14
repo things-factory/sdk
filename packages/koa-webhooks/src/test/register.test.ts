@@ -21,13 +21,13 @@ describe('registerWebhook', () => {
     fetchMock.restore()
   })
 
-  it('sends a post request to the given warehouse domain with the webhook data as a GraphQL query in the body and the access token in the headers', async () => {
+  it('sends a post request to the given site domain with the webhook data as a GraphQL query in the body and the access token in the headers', async () => {
     fetchMock.mock('*', successResponse)
     const webhook: Options = {
       address: 'myapp.com/webhooks',
       topic: 'PRODUCTS_CREATE',
       accessToken: 'some token',
-      warehouse: 'warehouse1.myoperato.io',
+      site: 'site1.myoperato.io',
       apiVersion: ApiVersion.Unstable
     }
 
@@ -48,7 +48,7 @@ describe('registerWebhook', () => {
     await registerWebhook(webhook)
 
     const [address, request] = fetchMock.lastCall()
-    expect(address).toBe(`https://${webhook.warehouse}/admin/api/unstable/graphql.json`)
+    expect(address).toBe(`https://${webhook.site}/admin/api/unstable/graphql.json`)
     expect(request.body).toBe(webhookQuery)
     expect(request.headers).toMatchObject({
       [WebhookHeader.AccessToken]: webhook.accessToken,
@@ -62,7 +62,7 @@ describe('registerWebhook', () => {
       address: 'myapp.com/webhooks',
       topic: 'PRODUCTS_CREATE',
       accessToken: 'some token',
-      warehouse: 'warehouse1.myoperato.io'
+      site: 'site1.myoperato.io'
     }
 
     const result = await registerWebhook(webhook)
@@ -75,7 +75,7 @@ describe('registerWebhook', () => {
       address: 'myapp.com/webhooks',
       topic: 'PRODUCTS_CREATE',
       accessToken: 'some token',
-      warehouse: 'warehouse1.myoperato.io'
+      site: 'site1.myoperato.io'
     }
 
     const registerResponse = await registerWebhook(webhook)
@@ -88,7 +88,7 @@ describe('registerWebhook', () => {
       address: 'myapp.com/webhooks',
       topic: 'PRODUCTS_CREATE',
       accessToken: 'some token',
-      warehouse: 'warehouse1.myoperato.io'
+      site: 'site1.myoperato.io'
     }
 
     const result = await registerWebhook(webhook)

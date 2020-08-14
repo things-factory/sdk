@@ -127,7 +127,7 @@ const storageAccessHelper = `(function() {
 
       /* ITP 2.0 solution: handles cookie partitioning */
       StorageAccessHelper.prototype.setUpHelper = function() {
-        return new ITPHelper({redirectUrl: window.warehouseOrigin + "/admin/apps/" + window.apiKey + window.returnTo});
+        return new ITPHelper({redirectUrl: window.siteOrigin + "/admin/apps/" + window.apiKey + window.returnTo});
       }
 
       StorageAccessHelper.prototype.setCookieAndRedirect = function() {
