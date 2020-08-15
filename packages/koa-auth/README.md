@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/things-factory/sdk.svg?branch=master)](https://travis-ci.org/things-factory/sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![npm version](https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-auth.svg)](https://badge.fury.io/js/%40things-factory-sdk%2Fkoa-auth)
 
-Features you might know from the express module like the webhook middleware and proxy will be presented as their [own packages instead](https://github.com/things-factory/sdk/blob/master/packages/koa-things-factory-graphql-proxy/README.md).
+Features you might know from the express module like the webhook middleware and proxy will be presented as their [own packages instead](https://github.com/things-factory/sdk/blob/master/packages/koa-graphql-proxy/README.md).
 
 ## Installation
 
