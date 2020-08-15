@@ -159,7 +159,7 @@ describe('verifyRequest', () => {
 })
 
 function metaFieldsUrl(site: string) {
-  return `https://${site}/admin/metafields.json`
+  return `https://${site}/admin/oauth/profile.json`
 }
 
 function appUrl(site?: string) {
