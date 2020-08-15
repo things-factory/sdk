@@ -5,7 +5,7 @@ import { StatusCode } from '@shopify/network'
 import verifyRequest from '../verify-request'
 import { TEST_COOKIE_NAME, TOP_LEVEL_OAUTH_COOKIE_NAME } from '../../index'
 
-const TEST_WAREHOUSE = 'testsite.my-things-factory.com'
+const TEST_SITE = 'testsite.my-things-factory.com'
 
 describe('verifyRequest', () => {
   afterEach(fetch.restore)
@@ -14,12 +14,12 @@ describe('verifyRequest', () => {
     it('calls next', async () => {
       const verifyRequestMiddleware = verifyRequest()
       const ctx = createMockContext({
-        url: appUrl(TEST_WAREHOUSE),
-        session: { accessToken: 'test', site: TEST_WAREHOUSE }
+        url: appUrl(TEST_SITE),
+        session: { accessToken: 'test', site: TEST_SITE }
       })
       const next = jest.fn()
 
-      fetch.mock(metaFieldsUrl(TEST_WAREHOUSE), StatusCode.Ok)
+      fetch.mock(metaFieldsUrl(TEST_SITE), StatusCode.Ok)
       await verifyRequestMiddleware(ctx, next)
 
       expect(next).toHaveBeenCalled()
@@ -29,11 +29,11 @@ describe('verifyRequest', () => {
       const verifyRequestMiddleware = verifyRequest()
       const ctx = createMockContext({
         url: appUrl(),
-        session: { accessToken: 'test', site: TEST_WAREHOUSE }
+        session: { accessToken: 'test', site: TEST_SITE }
       })
       const next = jest.fn()
 
-      fetch.mock(metaFieldsUrl(TEST_WAREHOUSE), StatusCode.Ok)
+      fetch.mock(metaFieldsUrl(TEST_SITE), StatusCode.Ok)
       await verifyRequestMiddleware(ctx, next)
 
       expect(next).toHaveBeenCalled()
@@ -42,8 +42,8 @@ describe('verifyRequest', () => {
     it('clears the top level oauth cookie', () => {
       const verifyRequestMiddleware = verifyRequest()
       const ctx = createMockContext({
-        url: appUrl(TEST_WAREHOUSE),
-        session: { site: TEST_WAREHOUSE, accessToken: 'test' }
+        url: appUrl(TEST_SITE),
+        session: { site: TEST_SITE, accessToken: 'test' }
       })
       const next = jest.fn()
 
@@ -58,15 +58,15 @@ describe('verifyRequest', () => {
       const verifyRequestMiddleware = verifyRequest({ authRoute })
       const next = jest.fn()
       const ctx = createMockContext({
-        url: appUrl(TEST_WAREHOUSE),
+        url: appUrl(TEST_SITE),
         redirect: jest.fn(),
-        session: { accessToken: 'test', site: TEST_WAREHOUSE }
+        session: { accessToken: 'test', site: TEST_SITE }
       })
 
-      fetch.mock(metaFieldsUrl(TEST_WAREHOUSE), StatusCode.Unauthorized)
+      fetch.mock(metaFieldsUrl(TEST_SITE), StatusCode.Unauthorized)
       await verifyRequestMiddleware(ctx, next)
 
-      expect(ctx.redirect).toHaveBeenCalledWith(`${authRoute}?site=${TEST_WAREHOUSE}`)
+      expect(ctx.redirect).toHaveBeenCalledWith(`${authRoute}?site=${TEST_SITE}`)
     })
 
     it('redirects to the given authRoute if the site in session does not match the one in the query param', async () => {
@@ -75,15 +75,15 @@ describe('verifyRequest', () => {
       const verifyRequestMiddleware = verifyRequest({ authRoute })
       const next = jest.fn()
       const ctx = createMockContext({
-        url: appUrl(TEST_WAREHOUSE),
+        url: appUrl(TEST_SITE),
         redirect: jest.fn(),
         session: { accessToken: 'test', site: 'some-other-site.com' }
       })
 
-      fetch.mock(metaFieldsUrl(TEST_WAREHOUSE), StatusCode.Ok)
+      fetch.mock(metaFieldsUrl(TEST_SITE), StatusCode.Ok)
       await verifyRequestMiddleware(ctx, next)
 
-      expect(ctx.redirect).toHaveBeenCalledWith(`${authRoute}?site=${TEST_WAREHOUSE}`)
+      expect(ctx.redirect).toHaveBeenCalledWith(`${authRoute}?site=${TEST_SITE}`)
     })
   })
 
