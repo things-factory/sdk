@@ -152,7 +152,7 @@ describe('koa-graphql-proxy', () => {
     expect(config).toMatchObject({
       headers: {
         'Content-Type': 'application/json',
-        'X-ThingsFactory-Access-Token': accessToken
+        'X-Access-Token': accessToken
       },
       https: true,
       parseReqBody: false
@@ -182,7 +182,7 @@ describe('koa-graphql-proxy', () => {
     expect(config).toMatchObject({
       headers: {
         'Content-Type': 'application/json',
-        'X-ThingsFactory-Access-Token': password
+        'X-Access-Token': password
       },
       https: true,
       parseReqBody: false

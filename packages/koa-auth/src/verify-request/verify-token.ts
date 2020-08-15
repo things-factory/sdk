@@ -19,7 +19,7 @@ export function verifyToken(routes: Routes) {
         method: Method.Post,
         headers: {
           [Header.ContentType]: 'application/json',
-          'X-ThingsFactory-Access-Token': session.accessToken
+          'X-Access-Token': session.accessToken
         }
       })
 

@@ -13,7 +13,7 @@ $ yarn add @things-factory-sdk/koa-graphql-proxy
 
 ## Usage
 
-The module exports a proxy middleware as its default export. It expects that you have other middleware set up (such as [koa-auth](https://github.com/things-factory/sdk/tree/master/packages/koa-auth)) to authenticate requests with ThingsFactory, and have session data stored on `ctx.session`.
+The module exports a proxy middleware as its default export. It expects that you have other middleware set up (such as [things-factory-sdk/koa-auth](https://github.com/things-factory/sdk/tree/master/packages/koa-auth)) to authenticate requests with ThingsFactory, and have session data stored on `ctx.session`.
 
 ### Basic
 
@@ -39,7 +39,7 @@ app.use(
 app.use(proxy({ version: ApiVersion.Unstable }))
 ```
 
-This allows client-side scripts to query a logged-in merchant's site without needing to know the user's access token.
+This allows client-side scripts to query a logged-in site-owner's site without needing to know the user's access token.
 
 ```javascript
 fetch('/graphql', { credentials: 'include', body: mySerializedGraphQL })

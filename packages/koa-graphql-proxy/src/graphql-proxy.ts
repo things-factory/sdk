@@ -5,10 +5,6 @@ export const PROXY_BASE_PATH = '/graphql'
 export const GRAPHQL_PATH_PREFIX = '/admin/api'
 
 export enum ApiVersion {
-  July19 = '2019-07',
-  October19 = '2019-10',
-  January20 = '2020-01',
-  April20 = '2020-04',
   July20 = '2020-07',
   Unstable = 'unstable',
   Unversioned = 'unversioned'
@@ -50,7 +46,7 @@ export default function thingsFactoryGraphQLProxy(proxyOptions: ProxyOptions) {
       // proxy middleware will grab this request header
       headers: {
         'Content-Type': 'application/json',
-        'X-ThingsFactory-Access-Token': accessToken
+        'X-Access-Token': accessToken
       },
       proxyReqPathResolver() {
         return `${GRAPHQL_PATH_PREFIX}/${version}/graphql.json`

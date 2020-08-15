@@ -1,5 +1,5 @@
 export enum WebhookHeader {
-  AccessToken = 'X-ThingsFactory-Access-Token',
+  AccessToken = 'X-Access-Token',
   Hmac = 'X-ThingsFactory-Hmac-Sha256',
   Topic = 'X-ThingsFactory-Topic',
   Domain = 'X-ThingsFactory-Shop-Domain'

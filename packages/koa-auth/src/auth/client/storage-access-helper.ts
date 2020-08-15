@@ -99,10 +99,10 @@ const storageAccessHelper = `(function() {
 
       StorageAccessHelper.prototype.handleGetStorageAccess = function() {
         if (sessionStorage.getItem('things_factory.top_level_interaction')) {
-          // If merchant has been redirected to interact with TLD (requirement for prompting request to gain storage access)
+          // If site owner has been redirected to interact with TLD (requirement for prompting request to gain storage access)
           this.setupRequestStorageAccess();
         } else {
-          // If merchant has not been redirected to interact with TLD (requirement for prompting request to gain storage access)
+          // If site owner has not been redirected to interact with TLD (requirement for prompting request to gain storage access)
           this.redirectToAppTLD(ACCESS_DENIED_STATUS);
         }
       }

@@ -34,7 +34,7 @@ app.use(
     apiKey: THINGS_FACTORY_API_KEY,
     // your things-factory app secret
     secret: THINGS_FACTORY_SECRET,
-    // scopes to request on the merchants store
+    // scopes to request on the site-owner's site
     scopes: ['write_orders, write_products'],
     // set access mode, default is 'online'
     accessMode: 'offline',
