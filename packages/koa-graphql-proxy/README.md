@@ -13,7 +13,7 @@ $ yarn add @things-factory-sdk/koa-graphql-proxy
 
 ## Usage
 
-The module exports a proxy middleware as its default export. It expects that you have other middleware set up (such as [things-factory-sdk/koa-auth](https://github.com/things-factory/sdk/tree/master/packages/koa-auth)) to authenticate requests with ThingsFactory, and have session data stored on `ctx.session`.
+The module exports a proxy middleware as its default export. It expects that you have other middleware set up (such as [@things-factory-sdk/koa-auth](https://github.com/things-factory/sdk/tree/master/packages/koa-auth)) to authenticate requests with ThingsFactory, and have session data stored on `ctx.session`.
 
 ### Basic
 
