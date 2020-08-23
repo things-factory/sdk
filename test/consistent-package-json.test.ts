@@ -48,7 +48,7 @@ packages.forEach(({ packageName, packageJSONPath, packageJSON, expectedPackageJS
         expect(packageJSON.author).toBe(expectedPackageJSON.author)
       })
 
-      it('specifies Quilt Issues as bugs URL', () => {
+      it('specifies ThingsFactorySDK Issues as bugs URL', () => {
         expect(packageJSON.bugs).toStrictEqual(expectedPackageJSON.bugs)
       })
 
@@ -64,7 +64,7 @@ packages.forEach(({ packageName, packageJSONPath, packageJSON, expectedPackageJS
         expect(packageJSON.files).toStrictEqual(expect.arrayContaining(expectedPackageJSON.files))
       })
 
-      it('specifies Quilt deep-link homepage', () => {
+      it('specifies ThingsFactorySDK deep-link homepage', () => {
         expect(packageJSON.homepage).toBe(expectedPackageJSON.homepage)
       })
 
@@ -80,7 +80,7 @@ packages.forEach(({ packageName, packageJSONPath, packageJSON, expectedPackageJS
         expect(packageJSON.publishConfig).toStrictEqual(expectedPackageJSON.publishConfig)
       })
 
-      it('specifies a repository deep-linking into the Quilt monorepo', () => {
+      it('specifies a repository deep-linking into the ThingsFactorySDK monorepo', () => {
         expect(packageJSON.repository).toStrictEqual(expectedPackageJSON.repository)
       })
 
