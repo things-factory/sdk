@@ -1,6 +1,6 @@
 {
   "name": "@things-factory-sdk/koa-webhooks",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "license": "MIT",
   "description": "Receive webhooks from ThingsFactory with ease",
   "main": "dist/src/index.js",
