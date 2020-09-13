@@ -4,9 +4,10 @@
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "independent",
+  "version": "1.0.0-alpha.2",
   "command": {
     "publish": {
+      "skipNpm": false,
       "ignoreChanges": [
         "**/*.md",
         "**/tests/**",
